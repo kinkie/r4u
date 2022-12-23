@@ -9,7 +9,11 @@ def main() -> int:
     cal = Calendar()
     cal.add('prodid', '//Fracs calendar adapter//frac.dev')
     cal.add('version', '2.0')
-    html = open("running4you.html","r").read()
+    try:
+        html = open("running4you.html","r").read()
+    except Exception as e:
+        print("Cound not open file ./running4you.html because:\n\n", e)
+        raise
     html = html[html.find('<table '):]
     html = html[:html.find("</table>")+10]
     contents = parseString(html)
